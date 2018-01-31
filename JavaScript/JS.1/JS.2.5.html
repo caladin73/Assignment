@@ -1,16 +1,31 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
+<meta charset=utf-8 />
+<link rel="stylesheet" type="text/css" href="ass_js_2_4.css";>
+<title>J.S.2.5 Events</title>
+<style>
+div {
+    font-size:500%;
+}
+</style>
 
-    <script>
-    window.onload = function() {
-      document.body.onkeyup = function(event) {
-        document.getElementById("change").innerHTML += String.fromCharCode(event.keyCode);
-      }
+<script>
+  window.onload = function() {
+    document.body.onkeyup = function(event) {
+    document.getElementById("change").innerHTML += String.fromCharCode(event.keyCode);
     }
-    </script>
+  }
+</script>
+</head>
 
-  </head>
+
 <body>
+  <p><h2>JS.2.5 Events<h2></p>
+  <p><h3>Press some keys and see result:</h3></p><br><br>
   <div id=change></div>
 </body>
+
+
+
 </html>

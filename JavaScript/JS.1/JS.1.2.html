@@ -12,40 +12,25 @@
 
   <script>
 
+  var i, language, spoken, countries;
 
-      // How to address and display two object properties given an index
-      //window.alert(languages[i].countrycode + "    " + languages[i].language);
+  countries = [];
 
-      var i, text;
-
-      for (i = 0; i > languages.length; i++) {
-
-        if (! countries[languages[i].countrycode]) {
-            countries[languages[i].countrycode] = languages[i].countrycode;
-        }
+  for (i = 0; i < languages.length; i++) {
+      if (! countries[languages[i].language]) {
+          countries[languages[i].language] = Math.floor(languages[i].percentage * languages[i].population / 100);
+      } else {
+          countries[languages[i].language] += Math.floor(languages[i].percentage * languages[i].population / 100);
       }
+  }
 
-
-/*
-
-      var countries = [];     // We create an array
-                              // if there is nothing at a certain index
-                              // index is associative
-                              // then we put some data in there
-
-
-      if (! countries[languages[i].countrycode]) {
-          countries[languages[i].countrycode] = languages[i].countrycode;
-      }
-
-      // how to display what is at a certain index in associative array
-      //window.alert(countries[languages[i].countrycode]);
-      //window.alert(countries['UZB']);
-
-*/
-      console.log(countries);
-
+    for (language in countries) {
+      spoken = language + " ";
+      spoken += countries[language];
+      console.log(spoken);
+    }
 
   </script>
+
 </body>
 </html>
