@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS.2.2 Functions</title>
+</head>
+<body>
+
+    <h2>JS.2.2 Functions</h2>
+
+    <p id="result"></p>
+
+    <script>
+
+    var p, i;
+
+    function isPrime(p) {
+      for(var i = 2; i < p; i++)
+        if(p % i === 0) return false;
+      return p !== 1;
+    }
+
+
+    document.getElementById("result").innerHTML = isPrime(7);
+
+    console.log(isPrime);
+
+    </script>
+
+
+</body>
+</html>
