@@ -1,0 +1,87 @@
+SP.1.1
+Jeg bruger delimiter //
+
+Første sletter jeg databasen som jeg vil oprette, 
+hvis den findes og opretter en ny som jeg sætter
+til aktiv db "innodb"
+
+DROP DATABASE IF EXISTS innodb;
+CREATE DATABASE innodb;
+USE innodb;
+//
+
+Derefter sletter jeg proceduren hvis
+den eksister for en sikkerhedsskyld
+og opretter en ny procedure p1:
+
+DROP PROCEDURE IF EXISTS p1;
+CREATE PROCEDURE p1()
+BEGIN
+CREATE TABLE t3
+(
+    dist int(11) not null primary key,
+    repno int(11) not null,
+    repname varchar(16) not null
+);
+CREATE TABLE t4
+(
+    cust int(11) not null primary key auto_increment,
+    custname varchar(16) not null,
+    district int(11) not null,
+    index(district),
+    revenue float not null,
+    foreign key(district) references t3(dist)
+);
+END
+//
+
+Herefter kan jeg bruge min stored procedure
+til at opretter tabellerne og vise dem:
+
+call p1();
+show tables;
+//
+
+
+
+DROP PROCEDURE IF EXISTS p2;
+CREATE PROCEDURE p2()
+BEGIN
+    DECLARE i INT UNSIGNED DEFAULT 1;
+    WHILE i <= 5 DO
+      INSERT INTO t3 (dist, repno, repname) VALUES (1000+i, i, 'Hans');
+      SET i = i + 1;
+    END WHILE;
+COMMIT;
+END;//
+
+
+call p2();
+SELECT * FROM t3;//
+
+
+
+DROP PROCEDURE IF EXISTS p3;
+CREATE PROCEDURE p3()
+BEGIN
+    DECLARE i INT UNSIGNED DEFAULT 1;
+    WHILE i <= 1000 DO
+      INSERT INTO t4 (custname, district, revenue) VALUES (i, '1001', i*rand());
+      INSERT INTO t4 (custname, district, revenue) VALUES (i, '1002', i*rand());
+      INSERT INTO t4 (custname, district, revenue) VALUES (i, '1003', i*rand());
+      INSERT INTO t4 (custname, district, revenue) VALUES (i, '1004', i*rand());
+      INSERT INTO t4 (custname, district, revenue) VALUES (i, '1005', i*rand());
+      SET i = i + 1;
+    END WHILE;
+COMMIT;
+END;//
+
+
+call p3();
+SELECT * FROM t4;//
+
+
+
+
+
+

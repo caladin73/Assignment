@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment JS.1.1</title>
+    <script src="array.js"></script>
+</head>
+<body>
+  <h2>Assignment JS.1.1</h2>
+
+<p id="demo"></p>
+
+  <script>
+
+
+      var text, fLen, i;
+
+      fLen = languages.length;
+      text = "<ul>";
+      for (i = 0; i < fLen; i++) {
+          text += "<li>" + languages[i].countrycode + " - " + languages[i].language + " - " + (languages[i].percentage/100 * languages[i].population).toFixed(0) + "</li>";
+      }
+      text += "</ul>";
+      document.getElementById("demo").innerHTML = text;
+
+
+  </script>
+</body>
+</html>

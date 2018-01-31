@@ -1,0 +1,30 @@
+http://x15.dk/webdev/site/ch07s05.xhtml
+8.5
+Augment the solution to assignment 8.4 in such a way that it gives the rank of any given language.
+It must output only one line eg "Danish 107."
+8.4
+Please write an SQL query ranking languages according to their number of speakers.
+
+
+
+
+DROP PROCEDURE IF EXISTS p4;
+  CREATE PROCEDURE p4()
+  BEGIN
+    SET @lang = 'Danish';
+	select @lang, count(*) + 1 rank from
+	   (select language,
+	          sum(population*percentage/100) as speakers,
+	          (select sum(population*percentage/100)
+	           from country
+	           join countrylanguage on code = countrycode
+	           where language = 'Danish') as speakingGibberish
+	    from country
+	    join countrylanguage on code = countrycode
+	    group by language
+	    having speakers > speakingGibberish
+	    order by speakers) dt;
+    COMMIT;
+END;//
+
+CALL p4();//

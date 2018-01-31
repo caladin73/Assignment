@@ -1,0 +1,26 @@
+DELIMITER //
+DROP FUNCTION IF EXISTS accumulator;
+CREATE FUNCTION accumulator (prime decimal, n int, r decimal)
+RETURNS decimal(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE Kn decimal(10,2);
+  SET Kn = prime*pow((1+r/100),n);
+  RETURN Kn;
+END;//
+DELIMITER ;
+SELECT accumulator(1000,10,40);
+
+/*
+Kn = K*(1+x)*n
+K =  startkapital, altså den kapital der blev sat i banken
+P =  rentefoden skrevet i decimaltal eller
+x  =  p : 100, væksten i procent angivet som decimaltal
+n =  antal år eller perioder
+Kn =  kapital og renter efter n år
+*/
+
+
+Kn = K*(1+x)*n => Kn/K = (1 + X)^n =>
+
+ln(Kn/K)n = n*(1+x) => n = (ln(Kn/K)/(1+x))

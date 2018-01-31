@@ -1,0 +1,29 @@
+SP.1.0
+
+Jeg bruger "delimiter //"
+
+delimiter //
+
+DROP DATABASE if exists SP10;
+CREATE DATABASE SP10;
+USE SP10;
+CREATE TABLE t2(
+    pk1 int(11) primary key auto_increment,
+    visited datetime not null,
+    name varchar(16) not null,
+    number float not null);
+//
+
+DROP PROCEDURE IF EXISTS p;
+  CREATE PROCEDURE p(name char(32))
+  BEGIN
+    DECLARE i INT UNSIGNED DEFAULT 1;
+    WHILE i <= 5 DO
+    INSERT INTO t2 (visited, name, number) VALUES (CURRENT_TIMESTAMP, name, rand());
+    SET i = i + 1;
+    END WHILE;
+    COMMIT;
+    SELECT * FROM t2;
+END//
+
+call p('Peter')//

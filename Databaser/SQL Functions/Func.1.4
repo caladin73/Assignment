@@ -1,0 +1,39 @@
+DELIMITER //
+DROP FUNCTION IF EXISTS distancegc;
+CREATE FUNCTION distancegc(lat0 float, lon0 float, lat1 float, lon1 float)
+RETURNS DECIMAL(10,0)
+DETERMINISTIC
+BEGIN
+    DECLARE r float; -- jordens radius i km
+    DECLARE d float; -- den korteste afstand mellem to kordinater på jorden
+    DECLARE a float; -- mellemregning til Haversine formula
+    DECLARE c float; -- mellemregning til Haversine formula
+    DECLARE e float; -- mellemregning til Haversine formula
+    DECLARE b float; -- mellemregning til Haversine formula
+
+    -- først konverter jeg grader til radianer
+    SET lat0 = (lat0/180)*PI();
+    SET lon0 = (lon0/180)*PI();
+    SET lat1 = (lat1/180)*PI();
+    SET lon1 = (lon1/180)*PI();
+    SET r = 6371; -- jordens radius i km
+
+    SET a = pow(sin((lat0-lat1)/2),2);
+    SET b = cos(lat0)*cos(lat1)*pow(sin((lon0-lon1)/2),2);
+    SET e = 2*asin(sqrt(a+b));
+    SET d = r*e;
+    RETURN d;
+END;//
+DELIMITER ;
+
+SELECT distancegc(90,30,50,80);
+SELECT distancegc(30,90,50,60);
+SELECT distancegc(54,21,54,22);
+
+/*
+Så vidt jeg kan se får jeg det rigtige, hvis jeg
+sammenligner med en calculator på nettet her:
+https://www.movable-type.co.uk/scripts/latlong.html
+*/
+-- Delli to Copenhagen
+SELECT distancegc(28.644800, 77.216721, 55.676098, 12.568337);

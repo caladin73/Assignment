@@ -1,0 +1,50 @@
+8.0
+select country.name as 'Country'
+	, country.population as 'Country population #'
+	, country.continent as 'Continent'
+	, city.name as 'Capital Name'
+	, city.population as 'Capital population #'
+from country
+left outer join city on capital = id
+where country.continent in('Oceania', 'Antarctica', 'South America')
+order by capital desc;
+
+8.1
+select name as 'Country', population as 'Population', language, percentage as 'Speaks by % in country', 
+round((population*percentage/100), 0) "Speaks by # in country"
+from country
+join countrylanguage on countrycode = code
+order by round((population*percentage/100), 0);
+
+8.2
+select countrylanguage.language as 'Spoken Language'
+	, countrylanguage.percentage as 'Speaks by %'
+	, round((population*percentage/100), 0) "Speaks by #"
+from country
+join countrylanguage on countrycode = code
+group by countrylanguage.language
+order by round((population*percentage/100), 0);
+
+8.3
+select count(distinct language) as "Number of diffeerent language" from countrylanguage;
+
+8.4
+select countrylanguage.language as 'Spoken language'
+	, round(sum(country.population*countrylanguage.percentage/100), 0) 'Speaks'
+from country
+join countrylanguage on countrycode = code
+group by language
+order by Speaks desc;
+
+8.5
+Jeg er ikke helt sikker på hvordan jeg skal forstå opgaven, jeg har løst den ud fra at jeg skal 
+give rows et number i form af rank og grupper language og printet dem ud. Me jeg får Danish til 
+rank 152 hvilket ikke er korrekt iflg dit resultat. 
+
+set @rank=0;
+select @rank:=@rank+1 as Rank, countrylanguage.language as 'Spoken language'
+	, round(sum(country.population*countrylanguage.percentage/100), 0) 'Speaks'
+from country
+join countrylanguage on countrycode = code
+group by language
+order by Rank;

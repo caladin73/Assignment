@@ -1,0 +1,39 @@
+DELIMITER //
+DROP PROCEDURE IF EXISTS refINTChk;
+CREATE PROCEDURE refINTChk(t13count INT, t14count INT)
+    BEGIN
+        DECLARE j INT;
+        DECLARE dist_max INT;
+        START TRANSACTION;
+          SET dist_max = (SELECT max(dist) FROM t13);
+          IF dist_max IS NULL THEN
+              SET dist_max = 0;
+          ELSE
+              SET t13count = t13count + dist_max;
+          END IF;
+          WHILE t13count > dist_max do
+              INSERT INTO t13 (dist, repno, repname) VALUES (t13count, t13count, concat('Snake Oil Sales Rep ', t13count));
+              SET j = 0;
+              IF (SELECT EXISTS(SELECT * FROM t13 WHERE dist = t13count)) THEN
+                  WHILE j < t14count do
+                      INSERT INTO t14 (custname, district, revenue) VALUES (concat('Sucker ', t13count, ' ', j), t13count, round(rand() * 50000, 2));
+                      SET j = j + 1;
+                  END WHILE;
+              END IF;
+              SET t13count = t13count - 1;
+          END WHILE;
+     COMMIT;
+END;//
+
+CALL refINTChk(5, 10000);
+SELECT COUNT(*) FROM t13;
+SELECT COUNT(*) FROM t14;//
+
+0,84 sek stationær PC
+1,55 sek laptop
+
+SELECT * FROM t13 GROUP BY dist;
+SELECT * FROM t14 GROUP BY district;//
+
+TRUNCATE t13;
+TRUNCATE t14;//

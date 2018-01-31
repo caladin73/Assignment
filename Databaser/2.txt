@@ -1,0 +1,73 @@
+﻿9.0 MAX løsning:
+select co.name 'Country', ci.name 'City', ci.population 'City population'
+from country co
+left join city ci
+on co.code = countrycode
+where ci.population = (select max(population) from city);
+
+Anden løsning:
+select co.name 'Country', ci.name 'City', ci.population 'City population'
+from country co
+left join city ci
+on co.code = countrycode
+order by ci.population desc
+limit 1;
+
+select co.continent 'Continent', co.name 'Country', ci.name 'City', ci.population 'City Population'
+from city ci
+left join country co
+on ci.countrycode = co.code
+    where ci.population = (select max(ci2.population)
+       from city ci2
+       join country
+       on code = countrycode
+       where co.continent = continent)
+group by co.continent;
+
+9.1
+select co.name 'Country', ci.name 'City', ci.population 'City population'
+, (((ci.population/co.population)*100)) 'City/Country %'
+from country co
+left join city ci
+on co.code = countrycode
+group by co.name
+order by ci.population desc
+limit 5;
+
+8.4
+select cl.language as 'Number of people speaks'
+	, round(sum(co.population*cl.percentage/100), 0) 'Speaks'
+from country co
+join countrylanguage cl
+on countrycode = code
+group by language
+order by Speaks desc;
+
+8.5
+select 'Rank', cl.language as 'Number of people speaks'
+	, round(sum(co.population*cl.percentage/100), 0) 'Speaks'
+from country co
+join countrylanguage cl
+on countrycode = code
+group by language
+order by Speaks desc;
+
+
+
+
+
+
+limit 50;
+
+
+
+
+
+
+select cl.countrylanguage
+	, Rank
+from (select
+
+countrylanguage;
+
+select count(distinct language) as "Number of diffeerent language" from countrylanguage;

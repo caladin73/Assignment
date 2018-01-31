@@ -1,0 +1,76 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT booksCanon (book)+>
+<!ATTLIST booksCanon
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT book (title,edition,authors,publisher,pages,isbn,price,
+                currency,comments)>
+<!ATTLIST book
+  xmlns CDATA #FIXED ''
+  mycanon CDATA #REQUIRED
+  ref NMTOKEN #REQUIRED>
+
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT edition (#PCDATA)>
+<!ATTLIST edition
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT authors (author)+>
+<!ATTLIST authors
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT publisher (name,year,place)>
+<!ATTLIST publisher
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT pages (#PCDATA)>
+<!ATTLIST pages
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT isbn (#PCDATA)>
+<!ATTLIST isbn
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT price (#PCDATA)>
+<!ATTLIST price
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT currency (#PCDATA)>
+<!ATTLIST currency
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT comments (comment)+>
+<!ATTLIST comments
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT author (firstname,lastname)>
+<!ATTLIST author
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT year (#PCDATA)>
+<!ATTLIST year
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT place (#PCDATA)>
+<!ATTLIST place
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT comment (#PCDATA)>
+<!ATTLIST comment
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT firstname (#PCDATA)>
+<!ATTLIST firstname
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT lastname (#PCDATA)>
+<!ATTLIST lastname
+  xmlns CDATA #FIXED ''>

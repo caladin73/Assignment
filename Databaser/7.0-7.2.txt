@@ -1,0 +1,34 @@
+use newworld;
+
+7.0 countrylanguage
+select countrycode from countrylanguage where countrycode = 'AFG';
+select countrycode from countrylanguage where countrycode = 'TJK';
+select countrycode from countrylanguage where countrycode = 'UZB';
+select countrycode from countrylanguage where countrycode in('AFG', 'TJK', 'UZB');
+
+Jeg vil bruge SELECT og SUM, hvor lægger antallet af personer der snakker det 
+pågælende sprog sammen. Sprog finder jeg i tabellen "countrylanguage" og joiner den med "code"
+i "country" tabellen og finder antallet af personer der snakker det pågælende sprog. 
+
+Vi mangler informationer i tabellen "countrylanguage" om hvor mange personer der bor i landet. 
+
+7.1
+select countrycode from countrylanguage where language = 'Danish';
+
+select language, name
+from countrylanguage
+join country on code = countrycode 
+where name = 'South Africa';
+
+select language from countrylanguage where countrycode = 'UZB' order by percentage desc;
+select language from countrylanguage where countrycode = 'TJK' order by percentage desc;
+select language from countrylanguage where countrycode = 'AFG' order by percentage desc;
+
+7.2 country
+
+select headofstate from country where continent = 'Europe';
+
+select code, name, population
+from country 
+where region = 'Southern and Central Asia' 
+order by population;
