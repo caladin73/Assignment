@@ -28,24 +28,3 @@ languages[12] = { countrycode: 'UZB'
     , language: 'Tatar', percentage: '1.8', population: '24318000' };
 languages[13] = { countrycode: 'UZB'
     , language: 'Uzbek', percentage: '72.6', population: '24318000' };
-
-/*
-// How to address and display two object properties given an index
-var i = 10;
-window.alert(languages[i].countrycode + " " + languages[i].percentage);
-*/
-
-var countries = [];     // We create an array
-                        // if there is nothing at a certain index
-                        // index is associative
-                        // then we put some data in there
-
-/*
-if (! countries[languages[i].countrycode]) {
-    countries[languages[i].countrycode] = languages[i].countrycode;
-}
-
-// how to display what is at a certain index in associative array
-window.alert(countries[languages[i].countrycode]);
-window.alert(countries['UZB']);
-*/

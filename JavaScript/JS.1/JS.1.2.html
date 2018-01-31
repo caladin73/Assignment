@@ -12,18 +12,36 @@
 
   <script>
 
-      var country, array_length, i;
-      array_length = languages.length;
 
-      array = "<ol>";
-      for (i = 0; i < array_length; i++) {
-          array += "<li>" + languages[i].countrycode + " - " + languages[i].language + " - " + (languages[i].percentage/100 * languages[i].population).toFixed(0) + "</li>";
+      // How to address and display two object properties given an index
+
+      var i, text;
+
+      for (i = 0; i > languages.length; i++) {
+        if (! countries[languages[i].countrycode]) {
+            countries[languages[i].countrycode] = languages[i].countrycode;
+        }
       }
-      array += "</ol>";
 
-      document.getElementById("list").innerHTML = array;
+      //window.alert(languages[i].countrycode + "    " + languages[i].language);
+/*
 
-      console.log(languages);
+      var countries = [];     // We create an array
+                              // if there is nothing at a certain index
+                              // index is associative
+                              // then we put some data in there
+
+
+      if (! countries[languages[i].countrycode]) {
+          countries[languages[i].countrycode] = languages[i].countrycode;
+      }
+
+      // how to display what is at a certain index in associative array
+      //window.alert(countries[languages[i].countrycode]);
+      //window.alert(countries['UZB']);
+
+*/
+      console.log(countries);
 
 
   </script>
