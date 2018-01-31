@@ -1,0 +1,37 @@
+Answer the following questions:
+
+1. Must input elements be inside forms?
+Nej, imput elements skal ikke være i en form, iflg. gennemgang med Niels.
+Man kan altså godt have en form uden submit knap, hvor et java script selv submitter.
+
+2. Find and name the EMPTY elements.
+<!ELEMENT base EMPTY>
+<!ELEMENT meta EMPTY>
+<!ELEMENT link EMPTY>
+<!ELEMENT hr EMPTY>
+<!ELEMENT br EMPTY>
+<!ELEMENT param EMPTY>
+<!ELEMENT img EMPTY>
+<!ELEMENT area EMPTY>
+<!ELEMENT input EMPTY>
+<!ELEMENT col      EMPTY>
+
+3. May a table be empty? May a tr?
+Nej, et table skal have et indhold iflg.
+<!ELEMENT table
+     (caption?, (col*|colgroup*), thead?, tfoot?, (tbody+|tr+))>
+<!ELEMENT caption  %Inline;>
+<!ELEMENT thead    (tr)+>
+<!ELEMENT tfoot    (tr)+>
+<!ELEMENT tbody    (tr)+>
+<!ELEMENT colgroup (col)*>
+<!ELEMENT col      EMPTY>
+<!ELEMENT tr       (th|td)+>
+<!ELEMENT th       %Flow;>
+<!ELEMENT td       %Flow;>
+
+Et tr må ikke være tom, den skal indeholde:
+<!ELEMENT tr       (th|td)+>
+
+4. What are the possible attributes of a h2?
+class, dir, id, style, title, xml:lang

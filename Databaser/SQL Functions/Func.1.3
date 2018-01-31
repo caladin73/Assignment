@@ -1,0 +1,13 @@
+DELIMITER //
+DROP FUNCTION IF EXISTS distance;
+CREATE FUNCTION distance(x0 int, y0 int, x1 int, y1 int)
+RETURNS DOUBLE
+DETERMINISTIC
+BEGIN
+    DECLARE xy double;
+    SET xy = sqrt(pow((x1-x0),2)+pow((y1-y0),2));
+    RETURN xy;
+END//
+DELIMITER ;
+
+SELECT distance(1,2,3,5);

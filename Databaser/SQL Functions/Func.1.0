@@ -1,0 +1,20 @@
+DELIMITER //
+DROP FUNCTION IF EXISTS isPrime;
+CREATE FUNCTION isPrime(n INT)
+RETURNS BOOLEAN
+BEGIN
+	DECLARE i INT;
+  DECLARE x DOUBLE(12,0);
+  SET i = 2;
+  SET x = sqrt(n);
+  	WHILE (i <= x) DO
+    	if (n % i) = 0 THEN
+			   return 0;
+	    END IF;
+	    SET i = i + 1;
+  END WHILE;
+  RETURN 1;
+END;//
+DELIMITER ;
+
+SELECT isPrime(17);

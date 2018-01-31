@@ -1,0 +1,47 @@
+http://x15.dk/webdev/site/ch09s04.xhtml
+
+DELIMITER //
+
+DROP DATABASE IF EXISTS trig;
+CREATE DATABASE trig;
+USE trig;
+create table student (
+    firstname varchar(40),
+    surname varchar(40),
+    email varchar(40) NOT NULL,
+    id integer NOT NULL,
+    primary key(id)
+);
+create table course (
+    course varchar(12) not null,
+    ects int not null,
+    primary key(course)
+);
+create table achieves (
+    course varchar(12) not null,
+    grade int check (grade in (-3, 0, 2, 4, 7, 10, 12)),
+    revised datetime not null,
+    initials varchar(8) not null,
+    id integer not null,
+    primary key(course, id),
+    foreign key(id) references student(id),
+    foreign key(course) references course(course)
+);
+insert into student values('Abel','Anderson','a@a.dk',1);
+insert into student values('Bent','Bertramsen','b@a.dk',2);
+insert into student values('Chuck','Czechia','c@a.dk',3);
+insert into student values('Dan','Dontspell','d@a.dk',4);
+insert into student values('Erwin','Either','e@a.dk',5);
+insert into student values('Fran','Fantasia','f@a.dk',6);
+insert into student values('Gloria','Glamour','g@a.dk',7);
+insert into student values('Henny','Hello','h@a.dk',8);
+insert into student values('Ignaz','Introvert','i@a.dk',9);
+insert into student values('Jane','Jordan','j@a.dk',10);
+insert into student values('Kelly','Krimer','k@a.dk',11);
+insert into course values('dbxml', 10);
+insert into course values('idefix', 5);
+insert into course values('swkon', 10);
+insert into achieves values('dbxml', 10, current_timestamp, 'nml', 1);
+insert into achieves values('dbxml', 4, current_timestamp, 'nml', 8);
+insert into achieves values('dbxml', 12, current_timestamp, 'nml', 9);
+//

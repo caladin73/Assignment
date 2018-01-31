@@ -1,0 +1,38 @@
+http://x15.dk/webdev/site/ch09s04.xhtml
+
+DELIMITER //
+
+DROP TABLE IF EXISTS log;
+CREATE TABLE log(
+lid int(11) primary key auto_increment,
+course char(16) not null,
+id integer not null,
+comment text not null,
+old_revised datetime not null, 
+new_revised datetime not null, 
+old_initials char(8) not null,
+new_initials char(8) not null,
+foreign key(course, id) references achieves(course, id));
+//
+
+
+DROP TRIGGER IF EXISTS grade;
+CREATE TRIGGER grade AFTER UPDATE ON achieves
+    FOR EACH ROW
+    BEGIN
+        IF NEW.grade <> OLD.grade THEN
+             INSERT INTO log(course, id, comment, old_revised, new_revised, old_initials, new_initials) 
+              VALUES(OLD.course, OLD.id, 'Grade updated!', OLD.revised, CURRENT_TIMESTAMP, OLD.initials, NEW.initials);
+        END IF;
+END;//
+
+UPDATE achieves
+SET grade = '12'
+WHERE id = 8;
+SELECT * FROM achieves;
+SELECT * FROM log;
+//
+
+Jeg har valgt at bruge CURRENT_TIMESTAMP i stedet for new.revised, 
+da jeg får old.revised hvis det kun er grade, der er blevet updated.
+På den måde er jeg sikker på at jeg får tidspunktet lige efter grade er blevet ændret.

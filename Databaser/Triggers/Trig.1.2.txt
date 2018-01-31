@@ -1,0 +1,46 @@
+http://x15.dk/webdev/site/ch09s04.xhtml
+
+DROP TRIGGER IF EXISTS grade;
+CREATE TRIGGER grade AFTER UPDATE ON achieves
+    FOR EACH ROW
+    BEGIN
+        IF NEW.grade <> OLD.grade THEN
+           IF NOT NEW.grade IN (-3, 0, 2, 4, 7, 10, 12) THEN
+               INSERT INTO log(course, id, comment, old_revised, new_revised, old_initials, new_initials) 
+               VALUES(OLD.course, OLD.id, 'ERROR!', OLD.revised, CURRENT_TIMESTAMP, OLD.initials, NEW.initials);
+           END IF;
+        ELSE
+           IF NOT grade IN (-3, 0, 2, 4, 7, 10, 12) THEN
+               INSERT INTO log(course, id, comment, old_revised, new_revised, old_initials, new_initials) 
+               VALUES(course, id, 'ERROR!', revised, revised, initials, initials);
+           END IF;
+        END IF;
+END;//
+
+UPDATE achieves
+SET grade = '24'
+WHERE id = 8;
+SELECT * FROM achieves;
+SELECT * FROM log;
+//
+
+INSERT INTO achieves VALUES('dbxml', 0, current_timestamp, 'phm', 1);
+SELECT * FROM achieves;
+SELECT * FROM log;
+//
+
+Jeg brugte lang tid på at finde ud af hvorfor jeg blev ved med at få en fejl, indtil 
+jeg fandt ud af at det er fordi man ikke kan have 2 triggers, på samme tabel.
+Derfor har jeg kaldt dem det samme så den dropper dem hver gang jeg ændrede koden.
+
+
+
+
+
+
+
+
+
+
+
+

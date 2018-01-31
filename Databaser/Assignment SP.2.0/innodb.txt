@@ -1,0 +1,47 @@
+DELIMITER //
+DROP PROCEDURE IF EXISTS innodb//
+CREATE PROCEDURE innodb(t3count INT, t4count INT)
+BEGIN
+    DECLARE j INT;
+    DROP TABLE IF EXISTS t4;
+    DROP TABLE IF EXISTS t3;
+    CREATE TABLE t3 (
+        dist INT NOT NULL,
+        repno INT NOT NULL,
+        repname VARCHAR(32) NOT NULL,
+        primary key(dist)
+    )ENGINE=INNODB;
+    CREATE TABLE t4 (
+        cust INT NOT NULL primary key auto_increment,
+        custname VARCHAR(32) NOT NULL,
+        district INT NOT NULL,
+        revenue FLOAT(10,2) NOT NULL,
+        FOREIGN KEY (district) REFERENCES t3 (dist)
+    )ENGINE=INNODB;
+    START TRANSACTION;
+    WHILE t3count > 0 do
+        INSERT INTO t3 (dist, repno, repname)
+            VALUES (t3count, t3count, concat('Snake Oil Sales Rep ', t3count));
+        SET j = 0;
+        WHILE j < t4count do
+            INSERT INTO t4 (custname, district, revenue)
+                VALUES (concat('Sucker ', t3count, ' ', j),
+                        t3count,
+                        round(rand() * 50000, 2)
+                       );
+            SET j = j + 1;
+        END WHILE;
+        SET t3count = t3count - 1;
+    END WHILE;
+    COMMIT;
+END;//
+
+call innodb(5, 10000);
+SELECT COUNT(*) FROM t3;
+SELECT COUNT(*) FROM t4;//
+
+1,01 sek laptop
+0,72 sek stationær PC
+
+SELECT * FROM t13 GROUP BY dist;
+SELECT * FROM t14 GROUP BY district;//
