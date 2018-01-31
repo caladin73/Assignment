@@ -8,20 +8,22 @@
 <body>
   <h2>Assignment JS.1.1</h2>
 
-<p id="demo"></p>
+<p id="list"></p>
 
   <script>
 
+      var country, array_length, i;
+      array_length = languages.length;
 
-      var text, fLen, i;
-
-      fLen = languages.length;
-      text = "<ul>";
-      for (i = 0; i < fLen; i++) {
-          text += "<li>" + languages[i].countrycode + " - " + languages[i].language + " - " + (languages[i].percentage/100 * languages[i].population).toFixed(0) + "</li>";
+      array = "<ol>";
+      for (i = 0; i < array_length; i++) {
+          array += "<li>" + languages[i].countrycode + " - " + languages[i].language + " - " + (languages[i].percentage/100 * languages[i].population).toFixed(0) + "</li>";
       }
-      text += "</ul>";
-      document.getElementById("demo").innerHTML = text;
+      array += "</ol>";
+
+      document.getElementById("list").innerHTML = array;
+
+      console.log(languages);
 
 
   </script>

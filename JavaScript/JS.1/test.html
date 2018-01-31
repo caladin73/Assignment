@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Assignment JS.1.2</title>
+    <script src="array.js"></script>
 </head>
-<body>
+  <body>
 
-</body>
+    <h2>Assignment JS.1.2</h2>
+
+    <p id="languages"></p>
+    <p id="spoken"></p>
+
+    <script>
+      var text = "";
+      var i;
+
+      var speakers = [];
+
+      for (i = 0; i < languages.length; i++) {
+          text += languages[i].language + " - " + (languages[i].percentage * languages[i].population / 100).toFixed(0) + "<br>";
+          if (! speakers[languages[i].language]){
+            speakers[languages[i].language] = languages[i].language;
+          } else {
+          }
+      }
+
+      var text2 = "";
+      var i2;
+      for (i2 = 0; i2 < speakers.length; i2++) {
+        text2 += speakers[i].language + "<br>";
+      }
+
+
+      document.getElementById("languages").innerHTML = text;
+      document.getElementById("spoken").innerHTML = text2;
+
+
+      console.log(languages);
+      console.log(speakers);
+
+    </script>
+  </body>
 </html>
