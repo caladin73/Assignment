@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,13 +13,30 @@
 
     <p id="languages"></p>
     <p id="spoken"></p>
+=======
+<html>
+  <head>
+    <script src="array.js"></script>
+  </head>
+  <body>
+
+    <h2>JavaScript For Loop</h2>
+
+    <p id="demo"></p>
+    <br>
+    <p id="demo2"></p>
+>>>>>>> 311fd1cd58fc719681806888ceaacf97ff380271
 
     <script>
       var text = "";
       var i;
+<<<<<<< HEAD
 
       var speakers = [];
 
+=======
+      var speakers = [];
+>>>>>>> 311fd1cd58fc719681806888ceaacf97ff380271
       for (i = 0; i < languages.length; i++) {
           text += languages[i].language + " - " + (languages[i].percentage * languages[i].population / 100).toFixed(0) + "<br>";
           if (! speakers[languages[i].language]){
@@ -25,12 +44,18 @@
           } else {
           }
       }
+<<<<<<< HEAD
 
+=======
+      console.log(languages);
+      console.log(speakers);
+>>>>>>> 311fd1cd58fc719681806888ceaacf97ff380271
       var text2 = "";
       var i2;
       for (i2 = 0; i2 < speakers.length; i2++) {
         text2 += speakers[i].language + "<br>";
       }
+<<<<<<< HEAD
 
 
       document.getElementById("languages").innerHTML = text;
@@ -40,6 +65,10 @@
       console.log(languages);
       console.log(speakers);
 
+=======
+      document.getElementById("demo").innerHTML = text;
+      document.getElementById("demo2").innerHTML = text2;
+>>>>>>> 311fd1cd58fc719681806888ceaacf97ff380271
     </script>
   </body>
 </html>
