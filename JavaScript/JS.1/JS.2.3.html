@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS.2.3 Functions</title>
+</head>
+<body>
+
+    <h2>JS.2.3 Functions</h2>
+
+    <p id="result"></p>
+
+    <script>
+
+    var p, i;
+
+    function factorial(x) {
+      if (x === 0)
+      {
+        return 1;
+      }
+        return x * factorial(x-1);
+      }
+
+
+    console.log(factorial(7));
+
+
+    document.getElementById("result").innerHTML = factorial(7);
+
+    </script>
+
+
+</body>
+</html>

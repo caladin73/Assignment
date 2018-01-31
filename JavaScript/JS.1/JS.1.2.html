@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Assignment JS.1.2</title>
+    <title>JS.1.2</title>
     <script src="array.js"></script>
 </head>
 <body>
@@ -14,16 +14,18 @@
 
 
       // How to address and display two object properties given an index
+      //window.alert(languages[i].countrycode + "    " + languages[i].language);
 
       var i, text;
 
       for (i = 0; i > languages.length; i++) {
+
         if (! countries[languages[i].countrycode]) {
             countries[languages[i].countrycode] = languages[i].countrycode;
         }
       }
 
-      //window.alert(languages[i].countrycode + "    " + languages[i].language);
+
 /*
 
       var countries = [];     // We create an array

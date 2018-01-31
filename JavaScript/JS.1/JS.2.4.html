@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<link rel="stylesheet" type="text/css" href="ass_js_2_4.css";>
+<title>J.S.2.4 Events</title>
+</head>
+<body>
+
+
+      <div style="width:400px"
+              onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">
+          Move your mouse pointer into and out of this element!
+      </div>
+      <br>
+      <div style="width:400px"
+              onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">
+          Move your mouse pointer into and out of this element!
+      </div>
+      <br>
+      <div style="width:400px"
+              onmouseover="OnMouseIn (this)" onmouseout="OnMouseOut (this)">
+          Move your mouse pointer into and out of this element!
+      </div>
+
+
+  </body>
+
+  <script type="text/javascript">
+      function OnMouseIn (elem) {
+          elem.style.border = "2px solid red";
+      }
+      function OnMouseOut (elem) {
+          elem.style.border = "";
+      }
+  </script>
+
+
+
+</script>
+
+</body>
+</html>
