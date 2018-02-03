@@ -2,6 +2,7 @@
 /*
  * davis.js
  */
+
 let empty = function (target) {
     let foo = target;
     // Removing all children from an element
@@ -34,13 +35,15 @@ let fillLeft = function (target) {
 let t1 = function (ev) {
     let target = ev.target || ev.srcElement;
     let id = target.id;
-    // alert(id);
+    //alert(id);
     let elm = $(id);
     if (target.innerHTML !== '') {
         empty(elm);
     } else {
         switch (id) {
             case 'left': fillLeft(elm); break;
+            case 'center': fillLeft(elm); break;
+            case 'right': fillLeft(elm); break;
         }
     }
 }
@@ -48,7 +51,12 @@ let t1 = function (ev) {
 let initialize = function () {
     let left = $('left');
     fillLeft(left);
+    fillLeft(center);
+    fillLeft(right);
+
     left.addEventListener('click', t1, false);
+    center.addEventListener('click', t1, false);
+    right.addEventListener('click', t1, false);
 }
 
 window.addEventListener('load', initialize);
