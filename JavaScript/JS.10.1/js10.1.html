@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Test Forms</title>
+        <meta charset='utf-8'/>
+        <link rel='stylesheet' href='js101.css'/>
+        <script src='modernizr-custom.js'></script>
+        <script src='js101.js'></script>
+    </head>
+    <body>
+        <header>
+            <h1>HTML5 Form Input Types</h1>
+        </header>
+        <main>
+            <form action='http://x15.dk/hitme.php' method='post'
+                  id='formal'>
+                <fieldset class='left'>
+
+                    <legend>Temporal</legend>
+                    <div>
+                        <label for="dat">Enter date:</label>
+                        <br/>
+                        <input type="date" id="dat" name="date"
+                               placeholder='yyyy-mm-dd' required/>
+                               <span id='dateplch'></span>
+                </fieldset>
+                <fieldset class='left'>
+
+                    <legend>Others</legend>
+
+                    <div>
+                        <label for="rng">Kelvin temperature from -279 to 6000 in range:</label>
+                        <br/>
+                        <input type="range" id="rng" name="atob"
+                               min="-279" max="6000" value="100"/>
+                               <span id='ranger'></span>
+                    </div>
+
+                    <div>
+                        <label for="num">Enter number: 0-100</label>
+                        <br/>
+                        <input type="number" id="num" name="atob"  min="0" max="100" required/>
+                    </div>
+                </fieldset>
+
+                <fieldset class='right'>
+                    <legend>Buttons</legend>
+                    <p id='buttons'>
+                        <input type='submit' id='b1' value='Go'/>
+                        <input type='reset' value='Reset'/>
+                    </p>
+                </fieldset>
+
+            </form>
+        </main>
+        <footer>
+            <address>&copy; nml, 2015-10-01</address>
+        </footer>
+    </body>
+</html>
